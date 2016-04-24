@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="weatherApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather</title>
+	<link rel="stylesheet" href="css/bootstrap-4.0.css">
+	<link rel="stylesheet" href="css/bootstrap-4.0-flex.css">
+	<link rel="stylesheet" href="css/weather-icons.css">
+</head>
+<body>
+	<div class="container-fluid" ng-controller="HomeController">
+		<br>
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="text-center">
+					{{welcome}}
+					<i class="wi wi-horizon-alt text-warning" style="font-size: 1.6em"></i>
+				</h1>
+			</div>
+			<div class="col-sm-12">
+				<hr>
+			</div>
+			<div class="col-sm-3">
+				<form name="myForm">
+					<input type="text" class="form-control" ng-model="fieldNumber" name="fieldNumber" ng-pattern="/^[1-9][0-9]?$|^100$/">
+					ngModel: {{fieldNumber}}
+					<br>
+					ngModel is valid: {{myForm.fieldNumber.$valid}}
+					<br>
+					pattern is invalid: {{myForm.fieldNumber.$error.pattern}}
+				</form>
+
+			</div>
+			<div class="col-sm-3" ng-repeat="city in cities">
+				<div class="card" style="max-width: 20rem;">
+					<div class="card-header">
+						<h2 ng-bind="city.name"></h2>
+					</div>
+					<div class="card-block">
+						<i class="wi" ng-class="getIcon(city.weather[0].icon)" style="font-size: 4em;float: right;"></i>
+						<h4 class="card-title">
+						{{city.weather[0].description | uppercase}}
+						</h4>
+						<p class="card-text">
+							Deg: {{city.wind.deg}} <br>
+							Speed: {{city.wind.speed}} <br>
+							Sunrise: {{city.sys.sunrise | date:'h:mm:ss a'}} <br>
+							Sunset: {{city.sys.sunset | date:'h:mm:ss a'}}
+						</p>
+					</div>
+					<div class="card-footer">
+						<small class="text-warning">By OpenWeatherMap</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/lodash.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular-resource.min.js"></script>
+
+	<script type="text/javascript" src="app/app.js"></script>
+</body>
+</html>
