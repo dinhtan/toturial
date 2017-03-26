@@ -1,1 +1,1 @@
-Sample with web api and angularjs
+Sample with web api(weather service) and angularjs 1.0
