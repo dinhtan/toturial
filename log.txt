@@ -1,0 +1,2 @@
+Add new branch "issue2" to test git merge and rebase
+Amend commit
